@@ -1,0 +1,42 @@
+# The readr package contains functions for reading i) delimited files, ii) lines and iii) the whole file.
+
+#install.packages("readr")
+
+library("readr")
+
+#read the csv files
+IndividualDetails <- read_csv("covid19-in-india/IndividualDetails.csv")
+covid_i9_india <- read_csv("covid19-in-india/covid_19_india.csv")
+StatewiseTesting <- read_csv("covid19-in-india/StatewiseTestingDetails.csv")
+population_census <- read_csv("covid19-in-india/population_india_census2011.csv")
+HospitalBeds <- read_csv("covid19-in-india/HospitalBedsIndia.csv")
+ICMRTesting <- read_csv("covid19-in-india/ICMRTestingDetails.csv")
+
+class(IndividualDetails)
+dim(IndividualDetails)
+
+#Cleaning The IndivijualDetails dataframe
+
+#check for missing values in the dataframe and find total
+any(is.na(IndividualDetails))
+sum(is.na(IndividualDetails))
+
+install.packages("dplyr")
+library("dplyr")
+IndividualDetails <- select(IndividualDetails, -c(id, government_id, detected_city))
+View(IndividualDetails)
+any(is.na(IndividualDetails))
+sum(is.na(IndividualDetails))
+
+
+
+covid_i9_india <- select(covid_i9_india, -c("Total/day", Total_Confirmed, Confirmed_Active, "Active/Day"))
+View(covid_i9_india)
+dim(covid_i9_india)
+any(is.na(covid_i9_india))
+
+View(population_census)
+any(is.na(population_census))
+
+
+View(StatewiseTesting)
